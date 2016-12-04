@@ -10,5 +10,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ExportField {
 
-    public String translation();
+    public String translation() default "";
+
+    public String handler() default "";
 }

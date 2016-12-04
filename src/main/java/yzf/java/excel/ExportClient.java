@@ -3,6 +3,7 @@ package yzf.java.excel;
 import yzf.java.excel.storage.StorageService;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
@@ -61,10 +62,15 @@ public abstract class ExportClient<T> {
 
     public void export(List<T> data) {
         Field[] fields = getFields();
-        excelFactory.createExcel(data, fields, this);
+        Method[] methods = getMethods();
+        excelFactory.createExcel(data, fields, methods, this);
     }
 
     private Field[] getFields() {
         return clazz.getDeclaredFields();
+    }
+
+    private Method[] getMethods() {
+        return clazz.getDeclaredMethods();
     }
 }
