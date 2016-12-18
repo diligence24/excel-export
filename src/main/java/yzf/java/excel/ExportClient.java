@@ -60,6 +60,14 @@ public abstract class ExportClient<T> {
         this.storageConfig = storageConfig;
     }
 
+    public ExportClient(StorageService storageService,
+                        Map<String, Object> storageConfig) {
+        this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.rowAccessWindowSize = 5000;
+        this.storageService = storageService;
+        this.storageConfig = storageConfig;
+    }
+
     public void export(List<T> data) {
         Field[] fields = getFields();
         Method[] methods = getMethods();

@@ -17,7 +17,7 @@ public class OrderTest {
         Map<String, Object> localConfig = new HashMap<String, Object>();
         localConfig.put("dir", "/tmp");
 
-        ExportClient<Order> exportClient = new ExportClient<Order>(5000, localStorage, localConfig){};
+        ExportClient<Order> exportClient = new ExportClient<Order>(localStorage, localConfig){};
 
         List<Order> orderList = new ArrayList<Order>();
         orderList.add(new Order(1L, "order1"));
